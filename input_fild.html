@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vuejs dynamically add/remove input textbox</title>
+
+    <meta name="author" content="muni">
+    <meta name="description" content="vuejs dynamically add input textbox, add/remove input using vuejs 2">
+    <meta name="keywords" content="vuejs dynamically add input textbox, add/remove input using vuejs 2">
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous"> 
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+            font-size: 16px;
+            font-weight: 300;
+        }
+
+        .main-title {
+            font-weight: 500;
+        }
+
+        .trashIconContainer {
+            vertical-align: middle !important;
+            padding-top: 10px;
+            text-align: center;
+        }
+
+        .trashIconContainer i {
+            color: #e74c3c;
+        }
+
+        .btn-success,
+        .panel-success {
+            background-color: #27c24c !important;
+            border-color: #27c24c !important;
+            color: #fff !important;
+        }
+
+        .fa-minus-circle{
+            color: #e74c3c;
+        }
+        .fa-plus-circle{
+            color: #27c24c;
+        }
+
+        .submit_btn {
+            min-width: 150px;
+            max-width: 250px;
+            font-size: 1.2rem;
+            height: 60px;
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        .submit_btn i {
+            padding-right: 10px;
+        }
+        .form-control{
+            display: inline-block;
+            width: calc(100% - 45px);
+            border:1px solid #27c24c;
+        }
+        
+
+        @media (min-width: 768px) {
+            .invoice-save-bottom {
+                min-width: 400px;
+            }
+            .right-ads {
+                float: left;
+            }
+            .left-ads {
+                float: right;
+            }
+        }
+    </style>
+</head>
+
+<body>
+   <div class="container">
+        <div>
+            <main role="main" class="mt-4">
+                <!-- Input -->
+                <div class="row">
+                    <div class="col-md-6" id="app">
+                        
+                        <div class="form-group" v-for="(input,k) in inputs" :key="k">
+                            <input type="text" class="form-control" v-model="input.name">
+                            <sp an>
+                                <i class="fas fa-minus-circle" @click="remove(k)" v-show="k || ( !k && inputs.length > 1)"></i>
+                                <i class="fas fa-plus-circle" @click="add(k)" v-show="k == inputs.length-1"></i>
+                            </span>
+                        </div>
+
+                        <div class="text-center mb-2">
+                            <button type="button" class="btn btn-success submit_btn invoice-save-bottom">
+                                <i class="far fa-save"></i>
+                                Save
+                            </button>
+                        </div>
+
+                    
+                       
+
+
+                    </div>
+
+                    
+                  
+                
+           
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                inputs: [
+                    {
+                        name: ''
+                    }
+                ]
+            },
+            methods: {
+                add(index){
+                    this.inputs.push({name: ''});
+                },
+                remove(index){
+                    this.inputs.splice(index, 1);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
